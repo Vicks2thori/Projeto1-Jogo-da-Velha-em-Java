@@ -33,7 +33,7 @@ Este projeto tem como objetivo consolidar os conceitos fundamentais de programa�
 ## 🎯 Funcionalidades (em desenvolvimento)
 
 - [x] Estrutura inicial do projeto
-- [ ] Representação do tabuleiro 3x3 com matriz
+- [x] Representação do tabuleiro 3x3 com matriz
 - [ ] Alternância entre dois jogadores (X e O)
 - [ ] Validação de jogada (coordenadas válidas e casa vazia)
 - [ ] Verificação de vitória (linhas, colunas e diagonais)
