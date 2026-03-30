@@ -11,7 +11,7 @@ public class Main {
         String nome1 = nomes[0];
         String nome2 = nomes[1];
 
-        boolean jogadaValida = validacaoJogada((short)3, tabuleiro);
+        boolean jogadaValida = validacaoJogada((short)3, tabuleiro, (byte)2);
         System.out.println(jogadaValida);
 
         char simboloComeca = primeiraJogada(nomes);
@@ -19,7 +19,7 @@ public class Main {
         exibirTabuleiro(tabuleiro);
     }
 
-    private static boolean validacaoJogada(short posicao, byte[][] tabuleiro){
+    private static boolean validacaoJogada(short posicao, byte[][] tabuleiro, byte usuario){
         boolean jogadaValida;
         jogadaValida = posicao >=1 && posicao <=9;
         byte linha = (byte) (posicao >= 1 && posicao <=3 ? 0 : posicao >= 4 && posicao <=6 ? 1 : 2);
@@ -27,6 +27,9 @@ public class Main {
 
         if (jogadaValida){
             jogadaValida = tabuleiro[linha][coluna] != 1 || tabuleiro[linha][coluna] != 2;
+            if(jogadaValida){
+                tabuleiro[linha][coluna] = usuario;
+            }
         }
 
         return jogadaValida;
