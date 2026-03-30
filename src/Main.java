@@ -11,12 +11,15 @@ public class Main {
         String nome1 = nomes[0];
         String nome2 = nomes[1];
 
+        char simboloComeca = primeiraJogada(nomes);
+
         exibirTabuleiro(tabuleiro);
     }
 
-    private static void primeiraJogada(String[] nomes) {
+    private static char primeiraJogada(String[] nomes) {
+        int numeroAleatorio = (int)Math.floor(Math.random() * 10) + 1; //gera um numero de 1-10 e converte para int (nativo double)
         System.out.println("O sistema irá gerar um numero de 1-10, cada usuário deve informar um numero, quem chegar mais próximo inicia a partida!");
-        int numero1, numero2;
+        int numero1 = 0, numero2 =0;
         String erro = "Valor inserido inválido. Digite apenas um numero inteiro de 1-10.";
         boolean numero1Valido = false, numero2Valido = false;
 
@@ -51,6 +54,8 @@ public class Main {
                 System.err.println(erro);
             }
         } while (!numero2Valido);
+
+        return numeroAleatorio - numero1 < numeroAleatorio - numero2 ? 'X' : 'O';
     }
 
     private static String[] bemVindos(){
