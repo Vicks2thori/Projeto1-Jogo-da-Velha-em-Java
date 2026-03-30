@@ -16,25 +16,23 @@ public class Main {
     private static String[] bemVindos(){
         System.out.print("Bem vindos! ao:\n----------JOGO-DA-VELHA-EM-JAVA----------\n");
         String nome1, nome2;
-        try {
-            do {
-                System.out.println("Digite o nome do primeiro jogador(X):");
-                nome1 = sc.nextLine();
+        String erro;
 
-                String erro = nome1.isBlank() ? "Nome não pode ser vázio. Tente novamente:" : ""; //isBlank() verifica se está vazia ou com caracteres de espaço
-                System.out.println(erro);
-            } while(nome1.isBlank());
+        do {
+            System.out.println("Digite o nome do primeiro jogador(X):");
+            nome1 = sc.nextLine();
 
-            do {
-                System.out.println("Digite o nome do segundo jogador(0):");
-                nome2 = sc.nextLine();
+            erro = nome1.isBlank() ? "Nome não pode ser vázio. Tente novamente:" : ""; //isBlank() verifica se está vazia ou com caracteres de espaço
+            System.out.println(erro);
+        } while(nome1.isBlank());
 
-                String erro = nome2.isBlank() ? "Nome não pode ser vázio. Tente novamente:" : "";
-                System.out.println(erro);
-            } while(nome2.isBlank());
-        } finally {
-            sc.close();
-        }
+        do {
+            System.out.println("Digite o nome do segundo jogador(0):");
+            nome2 = sc.nextLine();
+
+            erro = nome2.isBlank() ? "Nome não pode ser vázio. Tente novamente:" : "";
+            System.out.println(erro);
+        } while(nome2.isBlank());
         return new String[]{nome1, nome2};
     }
 
