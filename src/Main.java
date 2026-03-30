@@ -5,7 +5,11 @@ public class Main {
 
     public static void main(String[] args) {
         byte[][] tabuleiro = new byte[3][3];
-        bemVindos();
+
+        String[] nomes = bemVindos();
+        String nome1 = nomes[0];
+        String nome2 = nomes[1];
+
         exibirTabuleiro(tabuleiro);
     }
 
