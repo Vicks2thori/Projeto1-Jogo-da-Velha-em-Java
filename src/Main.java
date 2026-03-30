@@ -1,15 +1,51 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-    public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+import java.util.Scanner;
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
+public class Main {
+    static Scanner sc = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        byte[][] tabuleiro = new byte[3][3];
+
+        String[] nomes = bemVindos();
+        String nome1 = nomes[0];
+        String nome2 = nomes[1];
+
+        exibirTabuleiro(tabuleiro);
+    }
+
+    private static String[] bemVindos(){
+        System.out.print("Bem vindos! ao:\n----------JOGO-DA-VELHA-EM-JAVA----------\n");
+        String nome1, nome2;
+        try {
+            do {
+                System.out.println("Digite o nome do primeiro jogador(X):");
+                nome1 = sc.nextLine();
+
+                String erro = nome1.isBlank() ? "Nome não pode ser vázio. Tente novamente:" : ""; //isBlank() verifica se está vazia ou com caracteres de espaço
+                System.out.println(erro);
+            } while(nome1.isBlank());
+
+            do {
+                System.out.println("Digite o nome do segundo jogador(0):");
+                nome2 = sc.nextLine();
+
+                String erro = nome2.isBlank() ? "Nome não pode ser vázio. Tente novamente:" : "";
+                System.out.println(erro);
+            } while(nome2.isBlank());
+        } finally {
+            sc.close();
+        }
+        return new String[]{nome1, nome2};
+    }
+
+    private static void exibirTabuleiro(byte[][] tabuleiro){
+        for (byte[] linha : tabuleiro) {
+            for (byte valor : linha) {
+                char simbolo = valor == 1 ? 'X' : valor == 2 ? 'O' : ' ';
+                System.out.printf("[%c]", simbolo);
+            }
+            System.out.println();
         }
     }
+
 }
