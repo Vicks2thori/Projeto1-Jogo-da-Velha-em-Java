@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -11,6 +12,45 @@ public class Main {
         String nome2 = nomes[1];
 
         exibirTabuleiro(tabuleiro);
+    }
+
+    private static void primeiraJogada(String[] nomes) {
+        System.out.println("O sistema irá gerar um numero de 1-10, cada usuário deve informar um numero, quem chegar mais próximo inicia a partida!");
+        int numero1, numero2;
+        String erro = "Valor inserido inválido. Digite apenas um numero inteiro de 1-10.";
+        boolean numero1Valido = false, numero2Valido = false;
+
+        do {
+            try {
+                do {
+                    System.out.printf("Digite um numero inteiro usuário %s (X):\n", nomes[0]);
+                    numero1 = sc.nextInt();
+
+                    erro = numero1 >= 1 && numero1 <= 10 ? "" : erro;
+                    System.err.println(erro);
+                } while (numero1 > 10 || numero1 < 1);
+                numero1Valido = true;
+            } catch (InputMismatchException e) {
+                sc.nextLine(); // Limpa o buffer com a entrada inválida
+                System.err.println(erro);
+            }
+        } while (!numero1Valido);
+
+        do {
+            try {
+                do {
+                    System.out.printf("Digite um numero inteiro usuário %s (O):\n", nomes[1]);
+                    numero2 = sc.nextInt();
+
+                    erro = numero2 >= 1 && numero2 <= 10 ? "" : erro;
+                    System.err.println(erro);
+                } while (numero2 > 10 || numero2 < 1);
+                numero2Valido = true;
+            } catch (InputMismatchException e) {
+                sc.nextLine();
+                System.err.println(erro);
+            }
+        } while (!numero2Valido);
     }
 
     private static String[] bemVindos(){
