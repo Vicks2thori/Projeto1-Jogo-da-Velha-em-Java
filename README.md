@@ -34,7 +34,7 @@ Este projeto tem como objetivo consolidar os conceitos fundamentais de programa�
 
 - [x] Estrutura inicial do projeto
 - [x] Representação do tabuleiro 3x3 com matriz
-- [ ] Alternância entre dois jogadores (X e O)
+- [x] Alternância entre dois jogadores (X e O)
 - [x] Validação de jogada (coordenadas válidas e casa vazia)
 - [ ] Verificação de vitória (linhas, colunas e diagonais)
 - [ ] Detecção de empate

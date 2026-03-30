@@ -10,13 +10,84 @@ public class Main {
         String[] nomes = bemVindos();
         String nome1 = nomes[0];
         String nome2 = nomes[1];
-
-        boolean jogadaValida = validacaoJogada((short)3, tabuleiro, (byte)2);
-        System.out.println(jogadaValida);
-
         char simboloComeca = primeiraJogada(nomes);
+        alternanciaJogadores(simboloComeca, tabuleiro, nomes);
+    }
 
-        exibirTabuleiro(tabuleiro);
+    private static void alternanciaJogadores(char simboloComece, byte[][] tabuleiro, String[] nomes){
+        byte primeiroJogador = (byte)(simboloComece == 'X' ? 1 : 2);
+        final byte MAXIMOJOGADASSEMVITORIA = 8;
+        boolean jogadaValida = false;
+        short posicao;
+        String erro = "Valor inserido inválido. Digite apenas um numero inteiro de 1-9.";
+
+        for (short i = 1; i <= MAXIMOJOGADASSEMVITORIA; i++){
+            if (primeiroJogador == (byte)1){
+                if (i % 2 != 0){
+                    do{
+                        try {
+                            System.out.printf("Jogador %s digite a %d° posição(X): ", nomes[0], i);
+                            posicao = sc.nextShort();
+                            jogadaValida = validacaoJogada(posicao, tabuleiro, (byte)1);
+                            erro = !jogadaValida ? "Valor inserido inválido. Digite apenas um numero inteiro de 1-9." : "";
+                            System.err.println(erro);
+                        } catch (InputMismatchException e){
+                            sc.nextLine();
+                            System.err.println(erro);
+                        }
+                    } while (!jogadaValida);
+                    exibirTabuleiro(tabuleiro);
+                }else {
+                    do{
+                        try {
+                            System.out.printf("Jogador %s digite a %d° posição(O): ", nomes[1], i);
+                            posicao = sc.nextShort();
+                            jogadaValida = validacaoJogada(posicao, tabuleiro, (byte)2);
+                            erro = !jogadaValida ? "Valor inserido inválido. Digite apenas um numero inteiro de 1-9." : "";
+                            System.err.println(erro);
+                        } catch (InputMismatchException e){
+                            sc.nextLine();
+                            System.err.println(erro);
+                        }
+
+                    } while (!jogadaValida);
+                    exibirTabuleiro(tabuleiro);
+                }
+            }else {
+                if (i % 2 != 0) {
+                    do {
+                        try {
+                            System.out.printf("Jogador %s digite a %d° posição(O): ", nomes[1], i);
+                            posicao = sc.nextShort();
+                            jogadaValida = validacaoJogada(posicao, tabuleiro, (byte) 2);
+                            erro = !jogadaValida ? "Valor inserido inválido. Digite apenas um numero inteiro de 1-9." : "";
+                            System.err.println(erro);
+                        } catch (InputMismatchException e) {
+                            sc.nextLine();
+                            System.err.println(erro);
+                        }
+
+                    } while (!jogadaValida);
+                    exibirTabuleiro(tabuleiro);
+                } else {
+                    do {
+                        try {
+                            System.out.printf("Jogador %s digite a %d° posição(X): ", nomes[0], i);
+                            posicao = sc.nextShort();
+                            jogadaValida = validacaoJogada(posicao, tabuleiro, (byte) 1);
+                            erro = !jogadaValida ? "Valor inserido inválido. Digite apenas um numero inteiro de 1-9." : "";
+                            System.err.println(erro);
+                        } catch (InputMismatchException e) {
+                            sc.nextLine();
+                            System.err.println(erro);
+                        }
+
+                    } while (!jogadaValida);
+                    exibirTabuleiro(tabuleiro);
+                }
+            }
+        }
+
     }
 
     private static boolean validacaoJogada(short posicao, byte[][] tabuleiro, byte usuario){
@@ -26,7 +97,7 @@ public class Main {
         byte coluna = (byte) (linha == 0 ? posicao -1 : linha == 1 ? posicao - 4 : posicao - 7);
 
         if (jogadaValida){
-            jogadaValida = tabuleiro[linha][coluna] != 1 || tabuleiro[linha][coluna] != 2;
+            jogadaValida = tabuleiro[linha][coluna] != 1 && tabuleiro[linha][coluna] != 2;
             if(jogadaValida){
                 tabuleiro[linha][coluna] = usuario;
             }
